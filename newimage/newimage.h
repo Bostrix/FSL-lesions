@@ -193,9 +193,9 @@ int readGeneralVolume(volume<T>& target, const std::string& filename,
 
     void basic_swapdimensions(int dim1, int dim2, int dim3, bool keepLRorder, const bool headerOnly=false);
 
-#ifdef EXPOSE_TREACHEROUS
+//#ifdef EXPOSE_TREACHEROUS
   public:
-#endif
+//#endif
     // sampling_mat should now be avoided - use newimagevox2mm_mat instead
     std::vector<NiftiIO::NiftiExtension> extensions;
     bool RadiologicalFile;
