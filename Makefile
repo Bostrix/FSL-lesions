@@ -1,11 +1,42 @@
-include ${FSLCONFDIR}/default.mk
+#include ${FSLCONFDIR}/default.mk
+#Specify the default compiler
+CXX = g++
 
-PROJNAME = lesions
-XFILES   = lesion_filling
-LIBS     = -lfsl-newimage -lfsl-miscmaths -lfsl-NewNifti \
-           -lfsl-znz -lfsl-cprob -lfsl-utils
+#Specify the -fpic flag
+CXXFLAGS += -fpic
 
-all: ${XFILES}
+#Define source files
+SRCS =lesion_filling.cc 
 
-lesion_filling:	lesion_filling.o
-	${CXX}  ${CXXFLAGS} -o $@ $^ ${LDFLAGS}
+#Define object files
+OBJS = $(SRCS:.cc=.o)
+
+#Define library source files and directories
+LIB_DIRS = miscmaths newimage NewNifti utils cprob znzlib
+LIB_SRCS = $(foreach dir,$(LIB_DIRS),$(wildcard $(dir)/*.cc))
+LIB_OBJS = $(LIB_SRCS:.cc=.o)
+
+#Define targets
+all:lesion_filling
+
+#Compile the final executable
+lesion_filling: libraries $(OBJS) $(LIB_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJS) $(LIB_OBJS) $(LDFLAGS) -lblas -llapack -lz
+
+#Rule to build object files
+%.o: %.cc
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+#Phony target to build all libraries
+.PHONY: libraries
+libraries:
+	@for dir in $(LIB_DIRS); do \
+	$(MAKE) -C $$dir CXX=$(CXX) CXXFLAGS='$(CXXFLAGS)' LDFLAGS='$(LDFLAGS)'; \
+	done
+
+#Clean rule
+clean:
+	rm -f lesion_filling $(OBJS) $(LIB_OBJS)
