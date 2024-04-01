@@ -4,7 +4,7 @@
 
 using namespace CPROB;
 
-int main()
+int main4()
 {
   printf("%f \n", lgam(5.2));
 }

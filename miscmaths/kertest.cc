@@ -12,7 +12,7 @@ using namespace MISCMATHS;
 using namespace NEWMAT;
 using std::cerr;
 using std::endl;
-int main (int argc,char** argv)
+int main2 (int argc,char** argv)
 {
   cerr << "Test program for 1D kernel interpolation" << endl;
 

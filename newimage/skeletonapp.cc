@@ -22,8 +22,8 @@ using namespace std;
 // The two strings below specify the title and example usage that is
 //  printed out as the help or usage message
 
-string title="skeletonapp (Version 1.0)\nCopyright(c) 2003, University of Oxford (Mark Jenkinson)";
-string examples="skeletonapp [options] --in1=<image1> --in2=<image2>";
+static string title="skeletonapp (Version 1.0)\nCopyright(c) 2003, University of Oxford (Mark Jenkinson)";
+static string examples="skeletonapp [options] --in1=<image1> --in2=<image2>";
 
 // Each (global) object below specificies as option and can be accessed
 //  anywhere in this file (since they are global).  The order of the
@@ -32,19 +32,19 @@ string examples="skeletonapp [options] --in1=<image1> --in2=<image2>";
 // Note that they must also be included in the main() function or they
 //  will not be active.
 
-Option<bool> verbose(string("-v,--verbose"), false,
+static Option<bool> verbose(string("-v,--verbose"), false,
 		     string("switch on diagnostic messages"),
 		     false, no_argument);
-Option<bool> help(string("-h,--help"), false,
+static Option<bool> help(string("-h,--help"), false,
 		  string("display this message"),
 		  false, no_argument);
 Option<string> inname(string("-i"), string(""),
 		  string("input filename"),
 		  true, requires_argument);
-Option<string> outname(string("-o"), string(""),
+static Option<string> outname(string("-o"), string(""),
 		  string("output filename"),
 		  true, requires_argument);
-int nonoptarg;
+static int nonoptarg;
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -57,7 +57,7 @@ void food(ShadowVolume<float>& finput) {
   cerr << finput.zsize() << endl;
 }
 // for example ... print difference of COGs between 2 images ...
-int do_work(int argc, char* argv[])
+static int do_work(int argc, char* argv[])
 {
   volume4D<float> v1(1,2,3,4);
   v1=1;
@@ -72,7 +72,7 @@ int do_work(int argc, char* argv[])
 
 ////////////////////////////////////////////////////////////////////////////
 
-int main(int argc,char *argv[])
+int main1(int argc,char *argv[])
 {
 
   RBD_COMMON::Tracer tr("main");
