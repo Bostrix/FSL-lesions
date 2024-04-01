@@ -42,4 +42,4 @@ libraries:
 
 #Clean rule
 clean:
-	rm -f lesion_filling $(OBJS) $(LIB_OBJS)
+	rm -f lesion_filling $(OBJS) $(LIB_OBJS) $(shell find . -type f \( -name "*.o" -o -name "*.so" \))
