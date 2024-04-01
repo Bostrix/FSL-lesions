@@ -509,7 +509,10 @@ int main(unsigned int argc, char **argv) {
     unsigned int parse_config_file(const std::string& filename);
 
     virtual ~OptionParser() {}
-
+// Declare instance_ as a static data member
+static OptionParser* instance_;
+// Declare Instance() function
+static OptionParser* Instance();
   protected:
     /**
     */
