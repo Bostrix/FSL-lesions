@@ -5,6 +5,9 @@ CXX = g++
 #Specify the -fpic flag
 CXXFLAGS += -fpic
 
+#Additional LDFLAGS for znzlib library
+ZNZLIB_LDFLAGS = -L/home/ubuntu/lesions/znzlib -lfsl-znz
+
 #Define source files
 SRCS =lesion_filling.cc 
 
@@ -21,7 +24,7 @@ all:lesion_filling
 
 #Compile the final executable
 lesion_filling: libraries $(OBJS) $(LIB_OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJS) $(LIB_OBJS) $(LDFLAGS) -lblas -llapack -lz
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJS) $(LIB_OBJS) $(LDFLAGS) $(ZNZLIB_LDFLAGS) -lblas -llapack -lz
 
 #Rule to build object files
 %.o: %.cc
