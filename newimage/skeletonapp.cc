@@ -18,7 +18,7 @@
 using namespace MISCMATHS;
 using namespace NEWIMAGE;
 using namespace Utilities;
-
+using namespace std;
 // The two strings below specify the title and example usage that is
 //  printed out as the help or usage message
 
