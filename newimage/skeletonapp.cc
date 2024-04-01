@@ -75,7 +75,7 @@ int do_work(int argc, char* argv[])
 int main(int argc,char *argv[])
 {
 
-  Tracer tr("main");
+  RBD_COMMON::Tracer tr("main");
   OptionParser options(title, examples);
 
   try {
