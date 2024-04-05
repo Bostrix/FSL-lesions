@@ -6,7 +6,7 @@ CXX = g++
 CXXFLAGS += -fpic
 
 #Additional LDFLAGS for znzlib library
-ZNZLIB_LDFLAGS = -L/path/to/your/znzlib/directory -lfsl-znz
+ZNZLIB_LDFLAGS = -L${HOME}/FSL-lesions/znzlib -lfsl-znz
 
 #Define source files
 SRCS =lesion_filling.cc 
