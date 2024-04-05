@@ -3,10 +3,12 @@
 ## Introduction
 Welcome to Lesion filling, a tool designed to improve volume measurements in neuroimaging by reducing intensity contrast within known lesion areas.This guide will walk you through the process of compiling the Lesion Filling tool and utilizing its functionalities for improving volume measurements in neuroimaging research, particularly in cases involving small lesions like those seen in Multiple Sclerosis patients.
 
+For comprehensive details regarding LESION_FILLING tool, kindly refer to the FMRIB Software Library (FSL) website. You can access the latest resources and documentation on Lesion_filling at the [FSL Git Repository](https://git.fmrib.ox.ac.uk/fsl). Furthermore, additional information and detailed documentation about Lesion_Filling are available on the FSL wiki page: [Lesion_filling Documentation](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/lesion_filling).
+
 ## Clone the Repository
 Begin by cloning the project repository from GitHub onto your local machine. You can do this by running the following command in your terminal or command prompt:
 ```bash
-https://github.com/Bostrix/FSL-lesions.git
+git clone https://github.com/Bostrix/FSL-lesions.git
 ```
 This command will create a local copy of the project in a directory named "FSL-lesions".
 
@@ -15,22 +17,23 @@ Change your current directory to the newly cloned project directory using the fo
 ```bash
 cd FSL-lesions
 ```
-## Compilation
-To compile the lesion filling tool, follow these steps:
-- Install Required Libraries:
-    Ensure that all necessary libraries, such as `Blas`,`Lapack`,`zlib`, are installed on your system. Use the following command to install those:
+## Installing Dependencies
+To install the necessary dependencies for compiling and building the project, follow these steps:
 ```bash
+sudo apt-get update
+sudo apt install g++
+sudo apt install make
 sudo apt-get install libblas-dev libblas3
 sudo apt-get install liblapack-dev liblapack3
 sudo apt-get install zlib1g zlib1g-dev
+sudo apt-get install libboost-all-dev
 ```
+After completing these steps, you should have all the necessary dependencies installed on your system to use lesion_filling.
 
-- Modfication of the Makefile:
-  After installing the necessary tools, modify the makefile to include additional LDFLAGS for the required libraries. For example, if using zlib, add the following line to the makefile:
-```bash
-ZNZLIB_LDFLAGS = -L/path/to/your/znzlib/directory -lfsl-znz
-```
-Replace `Path to your znzlib directory` with actual path to your directory.Then, make sure that `$(ZNZLIB_LDFLAGS)` is added in the compile step of the makefile.
+## Compilation
+- Ensure correct path in Makefile:
+ After installing the necessary tools, verify correct path in the makefile to include additional LDFLAGS for the required libraries. For instance, if utilizing znzlib, ensure that the correct path is present in the makefile.
+Make sure `$(ZNZLIB_LDFLAGS)` are included in the compile step of the makefile.
 
 - Compile Source Code:
     Execute the appropriate compile command to build the lesion filling. For example:
